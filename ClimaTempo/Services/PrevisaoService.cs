@@ -24,7 +24,8 @@ namespace ClimaTempo.Services
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 WriteIndented = true
-            };
+            }; 
+            /* Construtor com as opções */
         }
 
         public async Task<Previsao> GetPrevisaoById(int cityCode) 

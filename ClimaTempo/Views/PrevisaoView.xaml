@@ -3,11 +3,71 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClimaTempo.Views.PrevisaoView"
              Title="PrevisaoView">
-    <VerticalStackLayout>
-        <Label 
-            Text="{Binding Cidade}"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"   />
-        <Button Command="{Binding BuscarPrevisaoCommand}" Text="Carregar"/>
+    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+        <HorizontalStackLayout Spacing="4">
+            <Label Text="Cidade: " />
+            <Label 
+                Text="{Binding Cidade}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"   />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout Spacing="4">
+            <Label Text="Estado: " />
+            <Label 
+                Text="{Binding Estado}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"   />
+        </HorizontalStackLayout>
+        
+        <HorizontalStackLayout Spacing="4">
+            <Label Text="Atualizado em: " />
+            <Label 
+             Text="{Binding Atualizado_em}"
+             VerticalOptions="Center"
+             HorizontalOptions="Center"   />
+        </HorizontalStackLayout>
+        
+        <HorizontalStackLayout Spacing="4">
+            <Label Text="Condição: " />
+            <Label 
+                Text="{Binding Condicao}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"   />
+        </HorizontalStackLayout>
+        
+        <HorizontalStackLayout Spacing="4">
+            <Label Text="Condição_desc: " />
+            <Label 
+               Text="{Binding Condicao_desc}"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"   />
+        </HorizontalStackLayout>
+        
+        <HorizontalStackLayout Spacing="5">
+            <Label Text="Min: "/>
+            <Label 
+                 Text="{Binding Min}"
+                 VerticalOptions="Center"
+                 HorizontalOptions="Center"   />
+    
+            <Label Text="Max: " />
+            <Label 
+             Text="{Binding Max}"
+             VerticalOptions="Center"
+             HorizontalOptions="Center"   />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout Spacing="4">
+            <Label Text="IndiceUV: " />
+            <Label 
+                  Text="{Binding Max}"
+                  VerticalOptions="Center"
+                  HorizontalOptions="Center"   />
+        </HorizontalStackLayout>
+        
+        <Button Command="{Binding BuscarPrevisaoCommand}" Text="Carregar" WidthRequest="100"/>
+
+        <Image Source="teste.png" WidthRequest="150"/>
     </VerticalStackLayout>
 </ContentPage>
