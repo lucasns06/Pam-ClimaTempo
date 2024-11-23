@@ -31,7 +31,6 @@ namespace ClimaTempo.Services
 
         public async Task<Previsao> GetPrevisaoById(int cityCode) 
         {
-            cityCode = 244;
             Uri requestUri = new Uri($"{uri}/{cityCode}");
             try
             {

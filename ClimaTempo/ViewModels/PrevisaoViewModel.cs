@@ -56,8 +56,8 @@ namespace ClimaTempo.ViewModels
 
         public async void BuscarPrevisao()
         {
-            //Busca dados de uma cidade
-            previsao = await new PrevisaoService().GetPrevisaoById(244);
+            int cityCode = 244;
+            previsao = await new PrevisaoService().GetPrevisaoById(cityCode);
             Estado = previsao.Estado;
             Condicao = previsao.clima[0].Condicao;
             Max = previsao.clima[0].Max;
