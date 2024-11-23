@@ -64,6 +64,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\CidadeView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\PrevisaoView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -6,10 +6,10 @@
     xmlns:local="clr-namespace:ClimaTempo.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="ClimaTempo">
-
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:PrevisaoView}"
-        Route="MainPage" />
+        Title="Previsao"
+            ContentTemplate="{DataTemplate local:PrevisaoView}" 
+            Route="MainPage"
+        />
 
 </Shell>

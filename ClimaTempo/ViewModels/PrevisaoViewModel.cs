@@ -31,27 +31,49 @@ namespace ClimaTempo.ViewModels
         private DateTime atualizado_em;
         [ObservableProperty]
         private string condicao_desc;
+        [ObservableProperty] //se quer exibir ela, entao é uma observableProperty
+        private List<Clima> proximosDias;
 
         private Previsao previsao;
+        private Previsao proxPrevisao;
 
+        //Dados da pesquisa
+        [ObservableProperty]
+        private string cidade_pesquisada;
+
+        //Dados da lista de cidades
+        [ObservableProperty]
+        private List<Cidade> cidade_list;
+        
         public ICommand BuscarPrevisaoCommand {  get; }
+        public ICommand BuscarCidadesCommand { get; }
+
         public PrevisaoViewModel() 
         {
             BuscarPrevisaoCommand = new Command(BuscarPrevisao);
+            BuscarCidadesCommand = new Command(BuscarCidades);
         }
 
         public async void BuscarPrevisao()
         {
+            //Busca dados de uma cidade
             previsao = await new PrevisaoService().GetPrevisaoById(244);
-            Cidade = previsao.Cidade;
             Estado = previsao.Estado;
             Condicao = previsao.clima[0].Condicao;
             Max = previsao.clima[0].Max;
             Min = previsao.clima[0].Min;
             Indiceuv = previsao.clima[0].Indice_uv;
             Condicao_desc = previsao.clima[0].Condicao_desc.Trim();
-            Atualizado_em = previsao.Atualizado_em; 
+            Atualizado_em = previsao.Atualizado_em;
+
+            //Busca dados de uma previsão para os proximos dias
+            proxPrevisao = await new PrevisaoService().GetPrevisaoForDaysById(244, 3);
+            ProximosDias = proxPrevisao.clima;
         }
-    
+        public async void BuscarCidades() 
+        {
+            Cidade_list = new List<Cidade>();
+            Cidade_list = await new CidadeService().GetCidadesByName(Cidade_pesquisada);
+        }
     }
 }

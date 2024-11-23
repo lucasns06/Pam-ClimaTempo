@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClimaTempo.Views.PrevisaoView"
              Title="PrevisaoView">
+    <ScrollView>
     <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
         <HorizontalStackLayout Spacing="4">
             <Label Text="Cidade: " />
@@ -66,8 +67,38 @@
                   HorizontalOptions="Center"   />
         </HorizontalStackLayout>
         
+        <CollectionView ItemsSource="{Binding ProximosDias}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Min}"/>
+                        <Label Text="{Binding Max}"/>
+                        <Label Text="{Binding Condicao}"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>    
+        </CollectionView>
+        
         <Button Command="{Binding BuscarPrevisaoCommand}" Text="Carregar" WidthRequest="100"/>
 
-        <Image Source="teste.png" WidthRequest="150"/>
+
+        <Entry Placeholder="Digite a cidade"
+               Text="{Binding Cidade_pesquisada}"/>
+        
+        <CollectionView ItemsSource="{Binding Cidade_list}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Nome}"/>
+                        <Label Text="{Binding Id}"/>
+                        <Label Text="{Binding Estado}"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Command="{Binding BuscarCidadesCommand}" Text="Pesquisar cidade"/>
+
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
