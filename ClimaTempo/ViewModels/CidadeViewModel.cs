@@ -30,7 +30,7 @@ namespace ClimaTempo.ViewModels
         {
             BuscarCidadeCommand = new Command(BuscarCidade);
         }
-        public async void BuscarCidade() 
+        public async void BuscarCidade()
         {
             cidades = await new CidadeService().GetCidadesByName("São Paulo");
             Nome = Cidade.Nome;

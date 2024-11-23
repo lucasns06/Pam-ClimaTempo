@@ -88,11 +88,13 @@
         <CollectionView ItemsSource="{Binding Cidade_list}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <VerticalStackLayout>
+                    <VerticalStackLayout Margin="10" Padding="10">
                         <Label Text="{Binding Nome}"/>
                         <Label Text="{Binding Id}"/>
                         <Label Text="{Binding Estado}"/>
-                    </VerticalStackLayout>
+
+                        <Button Command="{Binding BuscarPrevisaoCommand}" Text="Clima" WidthRequest="100"/>
+                        </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
