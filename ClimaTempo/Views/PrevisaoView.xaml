@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClimaTempo.Views.PrevisaoView"
-             Title="PrevisaoView">
-    <ScrollView>
-    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+             Title="Projeto Clima Tempo" >
+    <ScrollView HorizontalOptions="Center">
+        <VerticalStackLayout Spacing="10" Margin="50"  HorizontalOptions="Center">
+<!-- 
         <HorizontalStackLayout Spacing="4">
             <Label Text="Cidade: " />
             <Label 
@@ -78,29 +79,60 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>    
         </CollectionView>
-        
-        <Button Command="{Binding BuscarPrevisaoCommand}" Text="Carregar" WidthRequest="100"/>
 
+            <Button Command="{Binding BuscarPrevisaoCommand}" Text="Carregar" MaximumWidthRequest="100"/>
+-->
+            <Image Source="city.png" MaximumWidthRequest="200"/>
+            <Label   
+                HorizontalOptions="Center"
+                Text="Buscar Cidades"
+                FontSize="Header"
+                />
+            <Label   
+                HorizontalOptions="Center"
+                Text="Digite o nome de uma cidade para buscá-lo na API"         
+                FontSize="Micro"
+                Margin="0, 0, 30, 0"
+                />
+            <Entry Placeholder="Digite a cidade"
+               Text="{Binding Cidade_pesquisada}"
+               WidthRequest="200"
+               />
+            
+            <Button 
+                Command="{Binding BuscarCidadesCommand}" 
+                Text="Pesquisar" 
+                MaximumWidthRequest="150"
+                BackgroundColor= "Gold"
+                    />
 
-        <Entry Placeholder="Digite a cidade"
-               Text="{Binding Cidade_pesquisada}"/>
-        
-        <CollectionView ItemsSource="{Binding Cidade_list}">
+        <CollectionView ItemsSource="{Binding Cidade_list}" >
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <VerticalStackLayout Margin="10" Padding="10">
-                        <Label Text="{Binding Nome}"/>
-                        <Label Text="{Binding Id}"/>
-                        <Label Text="{Binding Estado}"/>
+                        <HorizontalStackLayout Padding="0, 20, 0, 0" HorizontalOptions="Center">                        
+                            <VerticalStackLayout >
+                            <Label Text="{Binding Nome}"  HorizontalOptions="Center"/>
+                            <Label Text="{Binding Id}"  HorizontalOptions="Center"/>
+                            <Label Text="{Binding Estado}"  HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                            
+                            <VerticalStackLayout VerticalOptions="Center">
+                                <Button Command="{Binding BuscarPrevisaoCommand}" 
+                                        Text="Clima" 
+                                        MaximumWidthRequest="100"
+                                        HorizontalOptions="Center"
+                                        BackgroundColor= "Gold"
+                                        Margin="20, 0, 0, 0"
+                                        Shadow=""
+                                        />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
 
-                        <Button Command="{Binding BuscarPrevisaoCommand}" Text="Clima" WidthRequest="100"/>
-                        </VerticalStackLayout>
-                </DataTemplate>
+                    </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Button Command="{Binding BuscarCidadesCommand}" Text="Pesquisar cidade"/>
-
-    </VerticalStackLayout>
+         
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
