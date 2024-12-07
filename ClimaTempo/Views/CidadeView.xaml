@@ -4,7 +4,7 @@
              x:Class="ClimaTempo.Views.CidadeView"
              Title="CidadeView">
     <VerticalStackLayout Spacing="10">
-
+    
         <CollectionView ItemsSource="{Binding BuscarCidade}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -18,6 +18,6 @@
         </CollectionView>
 
         <Button Command="{Binding BuscarCidadeCommand}" Text="Carregar" WidthRequest="100"/>
-
+   
     </VerticalStackLayout>
 </ContentPage>
