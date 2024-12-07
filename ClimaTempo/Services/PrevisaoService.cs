@@ -29,9 +29,9 @@ namespace ClimaTempo.Services
             /* Construtor com as opções */
         }
 
-        public async Task<Previsao> GetPrevisaoById(int cityCode) 
+        public async Task<Previsao> GetPrevisaoById(int Id) 
         {
-            Uri requestUri = new Uri($"{uri}/{cityCode}");
+            Uri requestUri = new Uri($"{uri}/{Id}");
             try
             {
                 HttpResponseMessage response = await client.GetAsync(requestUri);
