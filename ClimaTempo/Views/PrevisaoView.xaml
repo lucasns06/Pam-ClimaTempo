@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClimaTempo.Views.PrevisaoView"
              x:Name="PrevisaoView2"
-             Title="PrevisaoView">
-    <ScrollView HorizontalOptions="Center">
+             Title="">
+    <ScrollView HorizontalOptions="Center"> 
         <VerticalStackLayout Spacing="10" Margin="50"  HorizontalOptions="Center">
             <!-- 
         <HorizontalStackLayout Spacing="4">
@@ -83,7 +83,15 @@
 
             <Button Command="{Binding BuscarPrevisaoCommand}" Text="Carregar" MaximumWidthRequest="100"/>
 -->
-            <Image Source="city.png" MaximumWidthRequest="200"/>
+            <Image 
+                MaximumWidthRequest="200">
+                <Image.Source>
+                    <AppThemeBinding 
+                        Light="city.png"
+                        Dark="city2.png"/>
+                </Image.Source>
+            </Image>
+            
             <Label   
                 HorizontalOptions="Center"
                 Text="Buscar Cidades"
@@ -91,52 +99,57 @@
                 />
             <Label   
                 HorizontalOptions="Center"
-                Text="Digite o nome de uma cidade para buscá-lo na API"         
+                Text="Digite o nome de uma cidade para buscá-lo na API, caso queira buscar a previsão da cidade clique em clima."         
                 FontSize="Micro"
-                Margin="0, 0, 30, 0"
-                />
+                Margin="0, 0, 30, 0" />
             <Entry Placeholder="Digite a cidade"
                Text="{Binding Cidade_pesquisada}"
                WidthRequest="200"
                />
-            <Label Text="{Binding Max}"/>
-            <Label Text="{Binding Min}"/>
             <Button 
                 Command="{Binding BuscarCidadesCommand}" 
                 Text="Pesquisar" 
                 MaximumWidthRequest="150"
-                BackgroundColor= "Gold"
-                    />
-    
-        <CollectionView ItemsSource="{Binding Cidade_list}" >
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                        <HorizontalStackLayout Padding="0, 20, 0, 0" HorizontalOptions="Center">                        
-                            <VerticalStackLayout >
-                            <Label Text="{Binding Nome}"  HorizontalOptions="Center"/>
-                            <Label Text="{Binding Id}"  HorizontalOptions="Center"/>
-                            <Label Text="{Binding Estado}"  HorizontalOptions="Center"/>
-                            </VerticalStackLayout>
-                          
-                            <VerticalStackLayout VerticalOptions="Center">
-                                <Button Command="{Binding Path=BindingContext.BuscarPrevisaoCommand,
-                                    Source={x:Reference PrevisaoView2}}" 
-                                      Text="Clima" 
-                                      MaximumWidthRequest="100"
-                                      HorizontalOptions="Center"
-                                      BackgroundColor= "Gold"
-                                      Margin="20, 0, 0, 0"
-                                      CommandParameter="{Binding Id}"
-                                  />
-                            </VerticalStackLayout>
-                            
-                        </HorizontalStackLayout>
+                BackgroundColor= "Gold" />
 
-                    </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            <VerticalStackLayout HorizontalOptions="Center" IsVisible="{Binding IsPrevisaoVisible}">
+                <Label Text="Clima" HorizontalOptions="Center" FontSize="Medium" Margin="0, 5"/>
+                <HorizontalStackLayout>
+                    <Label Text="Max: " Margin="0, 0, 5, 0" />
+                    <Label Text="{Binding Max}"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label Text="Min: " Margin="0, 0, 5, 0" />
+                    <Label Text="{Binding Min}"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <ScrollView>
+                <CollectionView ItemsSource="{Binding Cidade_list}" >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout Padding="0, 40, 0, 0" HorizontalOptions="Center">
+                                <VerticalStackLayout >
+                                    <Label Text="{Binding Nome}"  HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Id}"  HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Estado}"  HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
 
-         
+                                <VerticalStackLayout VerticalOptions="Center">
+                                    <Button Command="{Binding Path=BindingContext.BuscarPrevisaoCommand,
+                                        Source={x:Reference PrevisaoView2}}" 
+                                          Text="Clima" 
+                                          MaximumWidthRequest="100"
+                                          HorizontalOptions="Center"
+                                          BackgroundColor= "Gold"
+                                          Margin="20, 0, 0, 0"
+                                          CommandParameter="{Binding Id}"/>
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

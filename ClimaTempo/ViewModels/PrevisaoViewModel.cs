@@ -14,6 +14,8 @@ namespace ClimaTempo.ViewModels
     public partial class PrevisaoViewModel : ObservableObject
     {
         [ObservableProperty]
+        private bool isPrevisaoVisible;
+        [ObservableProperty]
         private string cidade; //nome que vai colocar no Binding da label
         [ObservableProperty]
         private string estado;
@@ -51,28 +53,35 @@ namespace ClimaTempo.ViewModels
         {
             BuscarPrevisaoCommand = new Command<int>(BuscarPrevisao);
             BuscarCidadesCommand = new Command(BuscarCidades);
+            IsPrevisaoVisible = false;
         }
 
         public async void BuscarPrevisao(int Id)
         {
             previsao = await new PrevisaoService().GetPrevisaoById(Id);
-            //Estado = previsao.Estado;
-            //Condicao = previsao.clima[0].Condicao;
+            
             Max = previsao.clima[0].Max.ToString();
             Min = previsao.clima[0].Min.ToString();
-            //Indiceuv = previsao.clima[0].Indice_uv;
-            //Condicao_desc = previsao.clima[0].Condicao_desc.Trim();
-            //Atualizado_em = previsao.Atualizado_em;
-
-            //Busca dados de uma previsão para os proximos dias
-         /* proxPrevisao = await new PrevisaoService().GetPrevisaoForDaysById(244, 3);
-            ProximosDias = proxPrevisao.clima; */
+            IsPrevisaoVisible = true;
         }
-       
+
         public async void BuscarCidades() 
         {
+            IsPrevisaoVisible = false;
+
             Cidade_list = new List<Cidade>();
             Cidade_list = await new CidadeService().GetCidadesByName(Cidade_pesquisada);
         }
+        /*
+             Estado = previsao.Estado;
+             Condicao = previsao.clima[0].Condicao;
+             Indiceuv = previsao.clima[0].Indice_uv;
+             Condicao_desc = previsao.clima[0].Condicao_desc.Trim();
+             Atualizado_em = previsao.Atualizado_em;
+
+             Busca dados de uma previsão para os proximos dias
+             proxPrevisao = await new PrevisaoService().GetPrevisaoForDaysById(244, 3);
+             ProximosDias = proxPrevisao.clima; 
+        */
     }
 }

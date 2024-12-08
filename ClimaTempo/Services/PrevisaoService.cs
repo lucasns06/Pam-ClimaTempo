@@ -1,5 +1,4 @@
 ﻿using ClimaTempo.Models;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,7 +18,7 @@ namespace ClimaTempo.Services
 
         Uri uri = new Uri("https://brasilapi.com.br/api/cptec/v1/clima/previsao/");
         public PrevisaoService()
-        { 
+        {
             client = new HttpClient(); 
             options = new JsonSerializerOptions
             {
@@ -31,6 +30,7 @@ namespace ClimaTempo.Services
 
         public async Task<Previsao> GetPrevisaoById(int Id) 
         {
+            //Id = 244;
             Uri requestUri = new Uri($"{uri}/{Id}");
             try
             {
@@ -41,12 +41,21 @@ namespace ClimaTempo.Services
                 }
                 else
                 {
+                    previsao = new Previsao
+                    {
+                        Estado = "SP",
+                        clima = new List<Clima>
+                        {
+                            new Clima { Max = 32, Min = 28 }
+                        }
+                    };
+                    /*
                     Previsao previsao = new Previsao();
+                    previsao.Estado = "MG";
                     Clima climaTeste = new Clima();
                     climaTeste.Max = 32;
                     climaTeste.Min = 32;
-                    previsao.Estado = "MG";
-                    previsao.clima.Add(climaTeste);
+                    previsao.clima.Add(climaTeste); */
                 }          
             }
             catch (Exception ex) {

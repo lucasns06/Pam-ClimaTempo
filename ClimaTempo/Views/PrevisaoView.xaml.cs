@@ -8,5 +8,6 @@ public partial class PrevisaoView : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = new PrevisaoViewModel();
+
 	}
 }
